@@ -50,13 +50,7 @@ int main() {
         exit(1);
     }
 
-    std::vector<std::string> map;
-    std::string line;
-
-    while(std::getline(input, line)) {
-        map.push_back(line);
-    }
-
+    std::vector<std::string> map { std::istream_iterator<std::string>{input}, {} };
     std::vector<std::pair<int, int>> slopes { {1, 1}, { 3, 1}, {5, 1}, {7, 1}, {1, 2} };
 
     auto part1 = countTrees(map, {3, 1});
