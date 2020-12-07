@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <functional>
 #include <range/v3/view/generate.hpp>
 #include <range/v3/numeric/accumulate.hpp>
 #include <range/v3/view/take_while.hpp>
 #include <range/v3/view/transform.hpp>
 #include <algorithm>
+#include <unordered_set>
 
 
 int countTrees(const std::vector<std::string> &map, const std::pair<int, int> &slopes) {
@@ -29,6 +29,7 @@ int countTrees(const std::vector<std::string> &map, const std::pair<int, int> &s
             | ranges::views::transform(toSpot);
 
 
+    std::unordered_set<std::string> s;
     
     return std::ranges::count_if(res, [](const auto &c) { return c == '#'; } );
 }
