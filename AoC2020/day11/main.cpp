@@ -10,7 +10,7 @@
 #include <range/v3/view/chunk.hpp>
 #include <range/v3/view/take_while.hpp>
 #include <range/v3/view/generate.hpp>
-#include <range/v3/algorithm/find_if.hpp>
+#include <range/v3/algorithm/find_if_not.hpp>
 #include <range/v3/range/conversion.hpp>
 
 enum class Position {
@@ -67,7 +67,7 @@ bool check(const std::vector<Position> &layout, Direction & dir, int idx, int wi
         | ranges::views::take_while(checkIdx)
         | ranges::views::transform([&](auto&& p) { return layout[p.first * width + p.second]; });
 
-    auto pos =  ranges::find_if(idxs, [](auto&& p) { return p == Position::Occupied || p == Position::Empty; });
+    auto pos =  ranges::find_if_not(idxs, [](auto&& p) { return p == Position::Floor; });
 
     return pos != idxs.end() && *pos == Position::Occupied;
 }
